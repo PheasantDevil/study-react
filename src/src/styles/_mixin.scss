@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+/* Mixin Phone
+--------------------------------------- */
+//Font
+@mixin fs($size) {
+  font-size: $size + px;
+  font-size: ($size / 10) * 1rem;
+}
+
+@mixin fts($size, $lineH: 1) {
+  font-size: $size + px;
+  font-size: ($size / 10) * 1rem;
+  line-height: $lineH;
+}
+
+@mixin fbs($size, $fontW: bold) {
+  font-size: $size + px;
+  font-size: ($size / 10) * 1rem;
+  font-weight: $fontW;
+}
+
+@mixin ftbs($size, $lineH: 1, $fontW: bold) {
+  font-size: $size + px;
+  font-size: ($size / 10) * 1rem;
+  font-weight: $fontW;
+  line-height: $lineH;
+}
+
+@mixin linkColor($color) {
+  color: $color;
+  &:hover,
+  &:active,
+  &:focus {
+    color: lighten($color, 20%);
+    text-decoration: none;
+  }
+}
+
+//vm
+$xsmall: 320;
+$medium: 768;
+
+@function getVwXsmall($size, $viewport: $xsmall) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+@mixin fsXsmall($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: getVwXsmall($font_size);
+}
+
+@function getVwMedium($size, $viewport: $medium) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+@mixin fsMedium($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: getVwMedium($font_size);
+}
+
+//天地中央配置
+@mixin center-element($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if $horizontal and $vertical {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $horizontal {
+    left: 50%;
+    transform: translate(-50%, 0);
+  } @else if $vertical {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+//疑似要素
+@mixin pseudo($content: '', $display: block) {
+  display: $display;
+  content: $content;
+}
+
+//矢印
+@mixin arrowL($wh: 8px, $top: 8px, $lt: 10px, $bd: 3px, $color: $black) {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: ($top);
+    left: ($lt);
+    width: ($wh);
+    height: ($wh);
+    content: '';
+    border-top: $bd solid ($color);
+    border-right: $bd solid ($color);
+    transform: rotate(45deg);
+  }
+}
+
+@mixin arrowR($wh: 8px, $top: 8px, $rt: 10px, $bd: 3px, $color: $black) {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: ($top);
+    right: ($rt);
+    width: ($wh);
+    height: ($wh);
+    content: '';
+    border-top: $bd solid ($color);
+    border-right: $bd solid ($color);
+    transform: rotate(45deg);
+  }
+}
+
+//placeholder
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}
+
+//計算
+@mixin unit($sel, $elm, $rap) {
+  @if $sel == w {
+    width: ($elm / $rap) * $mwp;
+  } @else if $sel == h {
+    height: ($elm / $rap) * $mwp;
+  } @else if $sel == mt {
+    margin-top: ($elm / $rap) * $mwp;
+  } @else if $sel == mb {
+    margin-bottom: ($elm / $rap) * $mwp;
+  } @else if $sel == ml {
+    margin-left: ($elm / $rap) * $mwp;
+  } @else if $sel == mr {
+    margin-right: ($elm / $rap) * $mwp;
+  } @else if $sel == pt {
+    padding-top: ($elm / $rap) * $mwp;
+  } @else if $sel == pb {
+    padding-bottom: ($elm / $rap) * $mwp;
+  } @else if $sel == pl {
+    padding-left: ($elm / $rap) * $mwp;
+  } @else if $sel == pr {
+    padding-right: ($elm / $rap) * $mwp;
+  } @else if $sel == t {
+    top: ($elm / $rap) * $mwp;
+  } @else if $sel == l {
+    left: ($elm / $rap) * $mwp;
+  } @else if $sel == r {
+    right: ($elm / $rap) * $mwp;
+  } @else if $sel == b {
+    bottom: ($elm / $rap) * $mwp;
+  }
+}
+
+//出力 @include unit(w, 100, 1000);
+
+/* Media Queries
+--------------------------------------- */
+/* breakpoints */
+$mq-breakpoints: (
+  'xsmall': 320px,
+  'small': 600px,
+  'medium': 768px,
+  'large': 1100px,
+  'xlarge': 1280px
+);
+
+@mixin mq($breakpoint: medium, $rule: min, $subtraction: false) {
+  $breakpoint: map_get($mq-breakpoints, $breakpoint);
+  @if $rule == max and $subtraction {
+    $breakpoint: $breakpoint - 1;
+  }
+  @media screen and (#{$rule}-width: $breakpoint) {
+    @content;
+  }
+}
+
+/* Media Queries
+--------------------------------------- */
+$sp_nav: 'screen and (max-width:768px)';
+$tab: 'screen and (min-width:768px)';
+$pc: 'screen and (min-width: 1024px)';

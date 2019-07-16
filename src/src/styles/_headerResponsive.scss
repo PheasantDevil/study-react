@@ -1,0 +1,491 @@
+@charset "UTF-8";
+
+/* drawer
+--------------------------------------- */
+$gutter: 20px;
+$drawerWidth: 80%;
+$drawerCubic: cubic-bezier(0.17, 0.935, 0.305, 1);
+
+.drawerOpen {
+  position: static;
+  overflow: hidden;
+  .l_fixed {
+    position: fixed;
+    width: $mwp;
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: $mwp;
+  height: 55px;
+  padding: 10px 0;
+  background: $white;
+  box-shadow: 0 2px 5px 0 rgba(157, 157, 157, 0.5);
+  @include mq {
+    position: absolute;
+    width: 210px;
+    height: 100%;
+  }
+  &__logo {
+    width: 88px;
+    margin: 0 auto;
+    @include mq {
+      margin-bottom: 5px;
+    }
+  }
+  &-left {
+    .hamburger {
+      left: 0;
+    }
+    .drower {
+      transform: translateX(-102%);
+      @include mq {
+        transform: translateX(0);
+      }
+    }
+  }
+  @at-root .drawerOpen .header-left .drower {
+    transition: all 500ms $drawerCubic;
+    transform: translateX(0);
+  }
+}
+
+.bar {
+  position: fixed;
+  top: 9px;
+  right: 20px;
+  z-index: 11;
+  width: 37px;
+  height: 37px;
+  @include mq {
+    position: absolute;
+    top: 0;
+    right: auto;
+    left: 0;
+    z-index: 9;
+    width: $mwp;
+    height: 50px;
+    background: #00aae7;
+    box-shadow: 0 2px 4px 0 rgba(157, 157, 157, 0.5);
+  }
+  &_img {
+    display: block;
+    width: 37px;
+    height: 37px;
+    background: url(/img/responsive/bell_sp.png) no-repeat;
+    background-size: 37px auto;
+    @include mq {
+      position: absolute;
+      top: 6px;
+      left: 240px;
+      background-image: url(/img/responsive/bell_pc.png);
+    }
+  }
+  &__member {
+    display: none;
+    @extend %fs0;
+    @include mq {
+      position: absolute;
+      top: 7px;
+      right: 30px;
+      display: block;
+      &_img,
+      &_name {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+      &_img {
+        width: 36px;
+        height: 36px;
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+      &_name {
+        padding-right: 20px;
+        color: $white;
+        letter-spacing: 1.3px;
+        @include fs(12);
+        &::before {
+          position: absolute;
+          top: 13px;
+          right: 0;
+          width: 6px;
+          height: 6px;
+          content: '';
+          border-top: 2px solid $white;
+          border-right: 2px solid $white;
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+  &__nav {
+    display: none;
+    @include mq {
+      position: absolute;
+      top: 52px;
+      right: 5px;
+      display: none;
+      padding: 15px 10px;
+      background: $white;
+      border-radius: 5px;
+      box-shadow: 0 0 5px 2px rgba(142, 142, 142, 0.5);
+      z-index: 19;
+      @include fs(13);
+      &::before {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        display: block;
+        width: 0;
+        height: 0;
+        content: '';
+        border-color: transparent transparent $white transparent;
+        border-style: solid;
+        border-width: 0 8px 12px 8px;
+      }
+      &_text {
+        margin-bottom: 10px;
+        @include ftbs(13, 1.5);
+      }
+      &_grid {
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e4e4e4;
+      }
+      &_switch {
+        display: block;
+        width: 150px;
+        padding: 7px;
+        color: $white;
+        text-align: center;
+        background: #00aae7;
+        border-radius: 25px;
+        @include fts(12);
+      }
+      &_link {
+        color: #232323;
+      }
+    }
+  }
+}
+
+.hamburger {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 14;
+  display: inline-block;
+  width: 50px;
+  height: 55px;
+  cursor: pointer;
+  background: #00aae7;
+  @include mq {
+    display: none;
+  }
+  &__pipe {
+    position: absolute;
+    left: 13px;
+    display: inline-block;
+    width: 23px;
+    height: 3px;
+    cursor: pointer;
+    background: $white;
+    border-radius: 3px;
+    transition: all 0.4s ease-out;
+    &:nth-of-type(1) {
+      top: 19px;
+    }
+    &:nth-of-type(2) {
+      top: 26px;
+    }
+    &:nth-of-type(3) {
+      bottom: 19px;
+    }
+  }
+  @at-root .drawerOpen .hamburger {
+    right: 0;
+    left: auto;
+    z-index: 14;
+    background: transparent;
+    div {
+      &:nth-of-type(1) {
+        transform: translateY(7px) rotate(-45deg);
+      }
+      &:nth-of-type(2) {
+        opacity: 0;
+      }
+      &:nth-of-type(3) {
+        transform: translateY(-7px) rotate(45deg);
+      }
+    }
+  }
+}
+
+.drower {
+  position: fixed;
+  top: 0;
+  z-index: 13;
+  width: $drawerWidth;
+  height: $mwp;
+  padding: 0 20px 120px 20px;
+  overflow-y: auto;
+  background: $white;
+  transition: all 500ms $drawerCubic;
+  -webkit-overflow-scrolling: touch;
+  will-change: transform;
+  @extend %fs0;
+  @include mq {
+    position: static;
+    width: $mwp;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    &__block {
+      padding: 0 ($gutter * 1.5);
+    }
+  }
+  &__link {
+    position: relative;
+    display: block;
+    color: #292929;
+    @include fts(16);
+    @include mq {
+      @include fts(15);
+    }
+    &-inline {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  &__icon {
+    display: inline-block;
+    width: 23px;
+    height: 24px;
+    margin-top: -4px;
+    margin-right: 10px;
+    vertical-align: top;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 23px auto;
+    @include mq {
+      display: block;
+      margin: 0 auto;
+      margin-bottom: 10px;
+    }
+    &-record {
+      background-image: url(/img/responsive/gnav1.png);
+    }
+    &-diagnosis {
+      background-image: url(/img/responsive/gnav2.png);
+    }
+    &-stress {
+      background-image: url(/img/responsive/gnav3.png);
+    }
+  }
+  &__item {
+    opacity: 0;
+    transition: all 0.4s ease-out;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    @include mq {
+      opacity: 1;
+    }
+    &:nth-of-type(-n + 4) {
+      border-bottom: 1px solid #ececec;
+      .drower__link {
+        height: 50px;
+        padding-top: 17px;
+        font-weight: bold;
+        color: #05485f;
+        @include mq {
+          height: auto;
+          padding: 15px 10px;
+          text-align: center;
+          &::before {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            display: block;
+            width: 0;
+            height: calc(100% - 20px);
+            content: '';
+            background: #00aae7;
+            border-radius: 3.5px;
+            transition: width 0.4s ease-out;
+          }
+          &-current,
+          &:hover {
+            &::before {
+              width: 7px;
+            }
+          }
+        }
+      }
+    }
+    &:first-of-type {
+      @include mq {
+        display: none;
+      }
+      .drower__link {
+        height: 60px;
+        padding-top: 19px;
+      }
+    }
+    &:nth-of-type(2) {
+      @include mq {
+        border-top: 1px solid #ececec;
+      }
+    }
+    &:nth-of-type(5) {
+      @include mq {
+        display: none;
+      }
+      .drower__link {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        @include fs(13);
+      }
+    }
+    &:nth-of-type(n + 6) {
+      @include mq {
+        display: none;
+      }
+      .drower__link {
+        margin-bottom: 25px;
+      }
+    }
+    &:nth-of-type(n + 2) {
+      .drower__link {
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: 1px;
+          display: block;
+          width: 7px;
+          height: 7px;
+          margin-top: -4px;
+          content: '';
+          border-top: 1px solid #000;
+          border-right: 1px solid #000;
+          transform: rotate(45deg);
+          @include mq {
+            display: none;
+          }
+        }
+      }
+    }
+    &_img {
+      display: inline-block;
+      width: 41px;
+      height: 41px;
+      margin-right: 10px;
+      overflow: hidden;
+      vertical-align: middle;
+      border: 1px solid #c5c5c5;
+      border-radius: 50%;
+    }
+    &-drop {
+      position: relative;
+      padding: 20px 0;
+      cursor: pointer;
+      transition: all 0.4s ease-out;
+      @include fts(14);
+      @include arrowR($wh: 8px, $top: 21px, $rt: 10px, $bd: 3px, $color: $black);
+      @include mq {
+        position: static;
+        padding: 5px;
+        color: $white;
+      }
+      &::before {
+        transition: all 0.4s ease-out;
+        transform: rotate(135deg);
+        @include mq {
+          display: none;
+        }
+      }
+    }
+    &-active {
+      &::before {
+        transform: rotate(-45deg);
+      }
+    }
+    &-current,
+    &:hover {
+      @include mq {
+      }
+    }
+  }
+  &__list {
+    display: none;
+    @include mq {
+      position: fixed;
+      top: 90px;
+      left: 0;
+      z-index: 11;
+      width: $mwp;
+      padding: 40px 0;
+      background: #333;
+      &_body {
+        width: $mwp;
+        max-width: $mw;
+        padding: 0 ($gutter * 3);
+        margin: 0 auto;
+      }
+    }
+    &_item {
+      padding-left: 2em;
+      @include fts(14);
+      @include mq {
+        display: inline-block;
+        vertical-align: top;
+      }
+      &:first-child {
+        .drower__list_link {
+          border-top: 1px solid #e8e8e8;
+          @include mq {
+            border-top: none;
+          }
+        }
+      }
+      &:last-of-type {
+        .drower__list_link {
+          border-bottom: none;
+        }
+      }
+    }
+    &_link {
+      display: block;
+      padding: 20px 0;
+      border-bottom: 1px solid #e8e8e8;
+      @include mq {
+        margin-right: 40px;
+        color: $white;
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  width: $mwp;
+  height: $mwp;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: opacity 0s cubic-bezier(0, 0, 0, 0);
+  will-change: opacity;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  @include mq {
+    cursor: default;
+  }
+}

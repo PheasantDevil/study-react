@@ -1,0 +1,19 @@
+// flatpicker override styles
+
+.flatpickr-current-month {
+  font-size: 14px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  & > .numInputWrapper {
+    width: 100px;
+    & > .numInput.cur-year {
+      width: 50px;
+    }
+    &:after {
+      content: '年';
+      display: inline;
+    }
+  }
+}

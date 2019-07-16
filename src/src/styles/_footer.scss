@@ -1,0 +1,45 @@
+/* footer
+--------------------------------------- */
+.footer {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: $mwp;
+  overflow: hidden;
+  background: #2f2f2f;
+  &__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 900px;
+    height: 70px;
+    padding: 25px 30px 25px 240px;
+  }
+  &__copy {
+    padding-right: 20px;
+    color: $white;
+    @include fs(10);
+  }
+  &__list {
+    @extend %fs0;
+    &_item {
+      display: inline-block;
+      color: $white;
+      vertical-align: middle;
+      @include fs(10);
+      &:last-of-type {
+        .footer__list_link {
+          padding-right: 0;
+        }
+      }
+    }
+    &_link {
+      padding: 0 10px;
+      color: $white;
+      @include fs(10);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

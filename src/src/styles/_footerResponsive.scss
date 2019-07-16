@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+/* footer
+--------------------------------------- */
+.footer {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: $mwp;
+  overflow: hidden;
+  background: #2f2f2f;
+  &__block {
+    height: 135px;
+    padding: 20px;
+    text-align: center;
+    @include mq {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      padding: 25px 30px 25px 240px;
+      text-align: left;
+    }
+  }
+  &__copy {
+    color: $white;
+    @include fs(10);
+    @include mq {
+      padding-right: 20px;
+    }
+  }
+  &__list {
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    @extend %fs0;
+    border-bottom: 1px solid #979797;
+    @include mq {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+    &_item {
+      display: inline-block;
+      color: $white;
+      vertical-align: middle;
+      @include fs(12);
+      @include mq {
+        @include fs(10);
+      }
+      &:last-of-type {
+        .footer__list_link {
+          padding-right: 0;
+        }
+      }
+    }
+    &_link {
+      padding: 0 10px;
+      color: $white;
+      @include fs(12);
+      @include mq {
+        @include fs(10);
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.footerLoin {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  width: $mwp;
+  height: 100px;
+  overflow: hidden;
+  text-align: center;
+  &__list {
+    margin-bottom: 15px;
+    @extend %fs0;
+    &_item {
+      display: inline-block;
+      color: #181818;
+      vertical-align: middle;
+      @include fs(12);
+      @include mq {
+        @include fs(13);
+      }
+    }
+    &_link {
+      padding: 0 10px;
+      color: #181818;
+      @include fs(12);
+      @include mq {
+        @include fs(13);
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__copy {
+    color: #181818;
+    @include fs(10);
+    @include mq {
+      @include fs(12);
+    }
+  }
+}

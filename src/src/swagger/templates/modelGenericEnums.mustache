@@ -1,0 +1,9 @@
+{{#has this 'enums'}}
+
+{{#vars}}
+{{#is this 'enum'}}
+export type {{enumName}} = {{#allowableValues}}{{#enumVars}}{{{value}}}{{^@last}} | {{/@last}}{{/enumVars}}{{/allowableValues}};
+{{/is}}
+{{/vars}}
+
+{{/has}}

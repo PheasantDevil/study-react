@@ -1,0 +1,222 @@
+@charset "UTF-8";
+@import 'setting';
+@import 'mixin';
+
+/* Reset
+--------------------------------------- */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  border: 0;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1;
+  font-kerning: normal;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  line-height: 1;
+  color: $textColor;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+caption,
+th,
+td {
+  font-weight: normal;
+  text-align: left;
+  vertical-align: middle;
+}
+
+li {
+  list-style-type: none;
+}
+
+q,
+blockquote {
+  quotes: none;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: '';
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='submit'],
+button,
+textarea {
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type='submit'],
+button {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+}
+
+/* Google Chrome, Safari, Opera 15+, Android, iOS */
+::-webkit-input-placeholder {
+  color: #a6a6a6;
+}
+
+/* Firefox 18- */
+:-moz-placeholder {
+  color: #a6a6a6;
+  opacity: 1;
+}
+
+/* Firefox 19+ */
+::-moz-placeholder {
+  color: #a6a6a6;
+  opacity: 1;
+}
+
+/* IE 10+ */
+:-ms-input-placeholder {
+  color: #a6a6a6;
+}
+
+[src$='.svg'],
+[data$='.svg'] {
+  width: 100%;
+}

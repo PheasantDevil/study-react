@@ -1,0 +1,35 @@
+// @ts-ignore
+import { callApi } from '../utils'
+{{#imports}}
+import {{classname}} from '../{{filename}}';
+{{/imports}}
+
+{{#operations}}
+{{#operation}}
+{{#contents}}
+/**
+ * {{summary}}
+ * {{notes}}
+ {{#parameters}}
+ * @param {{paramName}} {{description}}
+ {{/parameters}}
+ */
+export const {{nickname}} = ({ {{#parameters}}{{^isConstEnumParam}}{{paramName}}, {{/isConstEnumParam}}{{/parameters}} }: {
+  {{#parameters}}{{^isConstEnumParam}}
+  {{paramName}}{{^required}}?{{/required}}: {{{dataType}}}
+  {{/isConstEnumParam}}{{/parameters}}
+}) => {
+  return callApi<{{#returnType}}{{{returnType}}}{{/returnType}}{{^returnType}}any{{/returnType}}>({
+    method: '{{httpMethod}}'.toUpperCase(),
+    path: `{{{path}}}`,
+    accepts: [{{#produces}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/produces}}],
+    contentTypes: [{{#bodyParam}}{{#consumes}}'{{{mediaType}}}'{{#hasMore}}, {{/hasMore}}{{/consumes}}{{/bodyParam}}],
+    headerParameters: [{{#headerParams}}{ key: '{{baseName}}', value: {{paramName}} }, {{/headerParams}}],
+    queryParameters: {{#hasQueryParams}}{ {{#queryParams}}{{paramName}}, {{/queryParams}} }{{/hasQueryParams}}{{^hasQueryParams}} {} {{/hasQueryParams}},
+    {{#bodyParam}}plainBody: {{paramName}}, {{/bodyParam}}{{#hasFormParams}}formParams: [{{#formParams}}{ key: '{{baseName}}', value: {{paramName}} },{{/formParams}}], {{/hasFormParams}}
+  })
+}
+{{/contents}}
+
+{{/operation}}
+{{/operations}}

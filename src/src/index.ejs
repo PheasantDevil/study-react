@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>willbie</title>
+    <meta name="description" content="Microwave Helthcare Service" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#00aba9" />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700&amp;subset=japanese"
+      rel="stylesheet"
+    />
+    <style>
+      .loading {
+        background: #fafafa;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        display: table;
+        text-align: center;
+      }
+
+      .loading > p {
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 20px;
+        color: #121212;
+      }
+
+      html > * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="loading">
+        <p><img src="/loader/oval.svg" /></p>
+      </div>
+    </div>
+    <div id="modal"></div>
+  </body>
+</html>
