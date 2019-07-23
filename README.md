@@ -20,7 +20,11 @@ create-react-app my-app
 ・・（プロジェクトファイル名が my-app の場合）
 
 ```
-create-react-app --scripts-version=react-scripts-ts my-app
+create-react-app --scripts-version=react-scripts-ts my-app-ts
+(git cloneにて環境構築した場合(「node_modules」フォルダがないor「npm start」がERRORする場合))
+cd my-app-ts
+npm intall
+（→「package.json」をもとに「node_modules」を作成）
 ```
 
 ## Demo
